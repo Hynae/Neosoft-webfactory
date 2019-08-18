@@ -1,0 +1,28 @@
+
+<h1>TEST</h1>
+<mat-card>
+        <form [formGroup]="todoForm" (ngSubmit)="createTodo(todoForm.value)">
+                <label>Title :</label>
+                <input type="text" formControlName="title" placeholder="Title" [ngClass]="{'is-invalid':errorName && f.title.errors }" />
+                <div *ngIf="errorName &&f.title.errors" class="invalid-feedback">
+                    <div *ngIf="errorName && f.title.errors.required" style="color:red;"> Name is requiered ! </div>
+                </div> 
+                <label>Is it done ? :</label>
+                <input type="checkbox" formControlName="completed" />
+                <label>Details : </label>
+                <input type ="text" formControlName="details"/>
+                <button>Create</button>
+
+               
+        </form>
+                
+        <div *ngFor="let item of todosObservable$ | async">
+                <mat-checkbox (change)="onChange(item)" class="exemple" [ngModel]="item.completed">{{item.title}}
+                </mat-checkbox>
+                <button (click)="deleteTodo(item.id)">Supprimer</button>
+                <button mat-raised (click)='navigateToDetails(item)'>See details</button>
+                <div *ngIf="item.checked" style="color:green;">Crossed Out ! </div>
+        </div>
+
+       
+</mat-card>

@@ -1,0 +1,9 @@
+
+<mat-card>
+        <div *ngFor="let item of todoList">
+    <mat-checkbox class="exemple" (change)="onChange(item)">{{item.title}}</mat-checkbox><button mat-raised (click)='navigateToDetails(item)'>Click here</button>
+    <div *ngIf="item.checked" style="color:green">Crossed Out ! </div>
+    
+        </div>
+</mat-card>
+
